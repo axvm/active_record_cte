@@ -19,18 +19,18 @@ Or install it yourself as:
     $ gem install active_record_cte
 
 ## Usage
+```ruby
+class Foo < ActiveRecord::Base
+  #attr_accessor :col1, :col2
+end
 
-    class Foo < ActiveRecord::Base
-      #attr_accessor :col1, :col2
-    end
+non_recursive = Foo.select('id, col1, col2').where('col1 IS NOT NULL')
+recursive = Foo.select('id, col1, col2').from('cte_table').where(col2: 'something')
 
-    non_recursive = Foo.select('id, col1, col2').where('col1 IS NOT NULL')
-    recursive = Foo.select('id, col1, col2').from('cte_table').where(col2: 'something')
+union = non_recursive.union(recursive)
 
-    union = non_recursive.union(recursive)
-
-    Foo.with_recursive(cte_table: union).pluck(:id) #Or something else
-
+Foo.with_recursive(cte_table: union).from('cte_table AS foos').pluck(:id) #Or something else
+```
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake test` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
