@@ -1,4 +1,4 @@
-# ActiveRecordCte
+# ActiveRecordCTE
 
 Allows you to use CTE in ActiveRecord Relations. At this moment implemented only recursive query for ActiveRecord 3. Pull requests for other versions are welcome.
 
