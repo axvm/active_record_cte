@@ -1,6 +1,5 @@
 require "active_record_cte/version"
 require 'active_record'
-require 'pry'
 
 case ActiveRecord::VERSION::MAJOR
 when 3
